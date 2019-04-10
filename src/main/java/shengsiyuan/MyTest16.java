@@ -28,8 +28,12 @@ public class MyTest16 extends ClassLoader {
     }
 
     @Override
-    public String toString() {
-        return "[" + this.classLoaderName + "]" ;
+    protected Class<?> findClass(String className) throws ClassNotFoundException {
+
+        byte[] data = this.loadClassData(className);
+
+        return this.defineClass(className, data, 0, data.length);
+
     }
 
     private byte[] loadClassData(String name) {
@@ -39,12 +43,11 @@ public class MyTest16 extends ClassLoader {
 
 
         try {
-            this.classLoaderName = this.classLoaderName.replace(".", "/");
 
             is = new FileInputStream(new File(name + this.fileExtension));
             baos = new ByteArrayOutputStream();
 
-            int ch = 0;
+            int ch;
 
             while (-1 != (ch = is.read())) {
                 baos.write(ch);
