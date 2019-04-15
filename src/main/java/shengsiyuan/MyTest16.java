@@ -15,6 +15,8 @@ public class MyTest16 extends ClassLoader {
 
     private String classLoaderName;
 
+    private String path;
+
     private final String fileExtension = ".class" ;
 
     public MyTest16(String classLoaderName) {
@@ -27,8 +29,15 @@ public class MyTest16 extends ClassLoader {
         this.classLoaderName = classLoaderName;
     }
 
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     @Override
     protected Class<?> findClass(String className) throws ClassNotFoundException {
+
+        System.out.println("findClass invoke: " + className);
+        System.out.println("class loader name: " + this.classLoaderName);
 
         byte[] data = this.loadClassData(className);
 
@@ -36,15 +45,16 @@ public class MyTest16 extends ClassLoader {
 
     }
 
-    private byte[] loadClassData(String name) {
+    private byte[] loadClassData(String className) {
         InputStream is = null;
         byte[] data = null;
         ByteArrayOutputStream baos = null;
 
+        className = className.replace(".", "/");
 
         try {
 
-            is = new FileInputStream(new File(name + this.fileExtension));
+            is = new FileInputStream(new File(this.path + className + this.fileExtension));
             baos = new ByteArrayOutputStream();
 
             int ch;
@@ -69,15 +79,16 @@ public class MyTest16 extends ClassLoader {
     }
 
     public static void main(String[] args) throws Exception {
-        MyTest16 myTest16 = new MyTest16("loader1");
+        MyTest16 loader1 = new MyTest16("loader1");
+//        loader1.setPath("/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes");
+        loader1.setPath("/Users/weibo_li/Desktop/");
 
-        test(myTest16);
-    }
-
-    public static void test(ClassLoader classLoader) throws Exception {
-        Class<?> clazz = classLoader.loadClass("shengsiyuan.MyTest1");
+        Class<?> clazz = loader1.loadClass("shengsiyuan.MyTest1");
+        System.out.println("class: " + clazz.hashCode());
         Object object = clazz.newInstance();
-
         System.out.println(object);
+
+        System.out.println(clazz.getClassLoader());
     }
+
 }
