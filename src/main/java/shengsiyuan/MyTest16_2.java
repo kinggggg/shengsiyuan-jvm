@@ -109,7 +109,7 @@ public class MyTest16_2 extends ClassLoader {
 
         System.out.println("---------------------");
 
-        MyTest16_2 loader3 = new MyTest16_2("loader3");
+        MyTest16_2 loader3 = new MyTest16_2(loader2, "loader3");
         loader3.setPath("/Users/weibo_li/Desktop/");
         Class<?> clazz3 = loader3.loadClass("shengsiyuan.MyTest1");
         System.out.println("class: " + clazz3.hashCode());
