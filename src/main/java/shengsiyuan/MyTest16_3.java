@@ -81,6 +81,7 @@ public class MyTest16_3 extends ClassLoader {
         return data;
     }
 
+    // -XX:+TraceClassUnloading 显示被卸载的类的信息
     public static void main(String[] args) throws Exception {
         MyTest16_3 loader1 = new MyTest16_3("loader1");
         loader1.setPath("/Users/weibo_li/Desktop/");
@@ -92,6 +93,10 @@ public class MyTest16_3 extends ClassLoader {
         System.out.println(clazz.getClassLoader());
 
         System.out.println("---------------------");
+        loader1 = null;
+        clazz = null;
+        object = null;
+        System.gc();
 
         loader1 = new MyTest16_3("loader1");
         loader1.setPath("/Users/weibo_li/Desktop/");
