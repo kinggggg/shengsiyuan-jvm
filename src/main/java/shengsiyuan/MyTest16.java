@@ -33,6 +33,9 @@ public class MyTest16 extends ClassLoader {
         this.path = path;
     }
 
+    /**
+     * 按照ClassLoader类中loadClass方法的说明：建议自定义的类加载器重写findClass方法
+     **/
     @Override
     protected Class<?> findClass(String className) throws ClassNotFoundException {
 
@@ -78,16 +81,30 @@ public class MyTest16 extends ClassLoader {
         return data;
     }
 
+    /**
+     * 当删除掉classpath下的MyTest1 class文件时，MyTest1加载了两次，但是根据以往的经验：一个类只加载一次，但是通过这个例子看到一个类加载了两次？！这是为什么呢？这涉及到了命名空间的概念
+     **/
     public static void main(String[] args) throws Exception {
         MyTest16 loader1 = new MyTest16("loader1");
+        //当在项目的classpath中存在MyTest1的class文件时，由loader1的父加载器即系统类加载器AppClassLoader进行加载（双亲委派模型的定义：当加载一个类时优先由其父加载器进行加载）
 //        loader1.setPath("/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes");
+        //当在项目的classpath中不存在MyTest1的class文件时，由于父加载器AppClassLoader无法加载MyTest1，于是由loader1自己进行加载
         loader1.setPath("/Users/weibo_li/Desktop/");
 
         Class<?> clazz = loader1.loadClass("shengsiyuan.MyTest1");
         System.out.println("class: " + clazz.hashCode());
         Object object = clazz.newInstance();
         System.out.println(object);
+        System.out.println(clazz.getClassLoader());
 
+        System.out.println("---------------------");
+
+        MyTest16 loader2 = new MyTest16("loader2");
+        loader2.setPath("/Users/weibo_li/Desktop/");
+        Class<?> clazz2 = loader2.loadClass("shengsiyuan.MyTest1");
+        System.out.println("class: " + clazz2.hashCode());
+        Object object2 = clazz2.newInstance();
+        System.out.println(object2);
         System.out.println(clazz.getClassLoader());
     }
 
