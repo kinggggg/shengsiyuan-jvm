@@ -1,10 +1,10 @@
 package shengsiyuan;
 
 /**
- * @ClassName MyTest17
- * @Description
- * @Date 2019/4/16 10:31 PM
- * @Version v1.0
+ * 关于命名空间的的重要说明
+ *
+ * 1. 子加载器所加载的类能够访问到父加载器所加载的类
+ * 2. 父加载器所加载的类无法访问到子加载器所加载的类
  **/
 public class MyTest17 {
 
