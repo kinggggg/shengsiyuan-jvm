@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 /**
  * @ClassName MyTest16
- * @Description 这是视频中的实例程序，貌似根本就没有调用到loadClassData方法。视频讲解是错误的
+ * @Description
  * @Date 2019/4/9 10:36 PM
  * @Version v1.0
  **/
