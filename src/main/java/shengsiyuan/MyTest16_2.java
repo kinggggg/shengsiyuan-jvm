@@ -82,7 +82,7 @@ public class MyTest16_2 extends ClassLoader {
     }
 
     /**
-     * 当删除掉classpath下的MyTest1 class文件时，MyTest1加载了两次，但是根据以往的经验：一个类只加载一次，但是通过这个例子看到一个类加载了两次？！这是为什么呢？这涉及到了命名空间的概念
+     *
      **/
     public static void main(String[] args) throws Exception {
         MyTest16_2 loader1 = new MyTest16_2("loader1");
