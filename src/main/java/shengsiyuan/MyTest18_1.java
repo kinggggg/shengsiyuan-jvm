@@ -2,7 +2,7 @@ package shengsiyuan;
 
 /**
  * @ClassName MyTest18
- * @Description
+ * @Description 将自定义的类文件防止到启动类加载器所加载类的目录下后，自定义的类就会别启动类加载进行加载
  * @Date 2019/4/22 11:20 PM
  * @Version v1.0
  **/
