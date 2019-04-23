@@ -24,6 +24,8 @@ public class MyTest22 {
          *      sun.misc.Launcher$AppClassLoader@2a139a55
          *      sun.misc.Launcher$ExtClassLoader@3d4eac69
          * 可以看到，MyTest1此时已经由扩展类加载器进行加载了
+         *
+         * 这里需要注意的是，扩展类加载器只能加载存在与jar包中的class文件
          **/
         System.out.println(MyTest22.class.getClassLoader());
 
