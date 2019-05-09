@@ -24,6 +24,10 @@ public class MyTest16 extends ClassLoader {
         this.classLoaderName = classLoaderName;
     }
 
+    public MyTest16(ClassLoader parent){
+        super(parent);
+    }
+
     public MyTest16(ClassLoader parent, String classLoaderName){
         super(parent);
         this.classLoaderName = classLoaderName;
