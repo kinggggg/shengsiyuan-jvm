@@ -17,7 +17,7 @@ public class MyTest2 {
         in = 20;
     }
 
-    private void setX(int x) {
+    private synchronized void setX(int x) {
         this.x = x;
     }
 }
