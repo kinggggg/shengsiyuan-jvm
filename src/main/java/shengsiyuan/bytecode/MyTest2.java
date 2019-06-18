@@ -17,7 +17,7 @@ public class MyTest2 {
         in = 20;
     }
 
-    public void setX(int x) {
+    private void setX(int x) {
         this.x = x;
     }
 }
