@@ -28,6 +28,9 @@ public class MyTest2 {
     }
 
     private synchronized static void test2() {
+    }
 
+    static {
+        System.out.println("test");
     }
 }
