@@ -23,11 +23,8 @@ public class MyTest3 {
             ServerSocket serverSocket = new ServerSocket(9999);
             serverSocket.accept();
         }catch (FileNotFoundException ex) {
-
         }catch (IOException ex) {
-
         }catch (Exception ex) {
-
         }finally {
             System.out.println("finally");
         }
