@@ -24,7 +24,7 @@ import java.net.ServerSocket;
  */
 public class MyTest3 {
 
-    public void test() throws IOException, FileNotFoundException {
+    public void test() throws IOException, FileNotFoundException, NullPointerException {
         try {
             InputStream in = new FileInputStream("test.txt");
 
