@@ -15,7 +15,7 @@ public class MyTest17 {
         System.out.println("class: " + clazz.hashCode());
 
         // 如果注释掉改行，那么并不会实例化MySample对象，即MySample构造方法不会被调用
-        // 因此不会实例化MyCat对象，即没有对MyCat进行主动使用，这里就不会加载MyCat class（不一定，原因见笔记）
+        // 因此不会实例化MyCat对象，即没有对MyCat进行主动使用，这里就不会加载MyCat class（不一定，原因见笔记？？笔记呢？？？）
         Object object = clazz.newInstance();
     }
 }

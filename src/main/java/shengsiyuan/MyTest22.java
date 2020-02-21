@@ -1,5 +1,7 @@
 package shengsiyuan;
 
+import shengsiyuan.bytecode.MyTest1;
+
 public class MyTest22 {
 
     static {
