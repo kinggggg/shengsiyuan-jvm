@@ -40,7 +40,8 @@ public class MyTest16_1 extends ClassLoader {
 
         try {
 
-            is = new FileInputStream(new File("/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes/shengsiyuan/MyTest1.class"));
+//            is = new FileInputStream(new File("/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes/shengsiyuan/MyTest1.class"));
+            is = new FileInputStream(new File("E:\\code\\shengsiyuan-jvm\\out\\production\\classes\\shengsiyuan\\MyTest1.class"));
             baos = new ByteArrayOutputStream();
 
             int ch = 0;
