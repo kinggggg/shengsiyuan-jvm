@@ -7,7 +7,40 @@ import java.io.InputStream;
 
 /**
  * @ClassName MyTest16
- * @Description 这是视频中的实例程序，貌似根本就没有调用到loadClassData方法。视频讲解是错误的
+ * @Description
+ *
+ * 程序的效果如下：
+ * 1. 当MyTest1.class存在类路径（即，classpath中时，此时为(/Users/weibo_li/Documents/code/shengsiyuan-jvm/build/classes/java/main/shengsiyuan/MyTest1.class，这个
+ * 路径与IDEA的不同而不同，在旧版本，例如2018版本中的路径为/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes）中时
+ * 运行下面的程序的输出如下。可以看到加载MyTest1的均是系统类加载器AppClassLoader，因为系统类加载器AppClassLoader可以同类路径下加载MyTest1
+ *
+ * class: 2018699554
+ * shengsiyuan.MyTest1@4e25154f
+ * sun.misc.Launcher$AppClassLoader@2a139a55
+ * ---------------------
+ * class: 2018699554
+ * shengsiyuan.MyTest1@70dea4e
+ * sun.misc.Launcher$AppClassLoader@2a139a55
+ *
+ *
+ * 2. 当MyTest1.class在类路径下不存在时
+ *  运行下面的程序输出如下。可以看到虽然加载的class文件是同一份，但是是由不同的类加载进行加载的
+ *
+ * findClass invoke: shengsiyuan.MyTest1
+ * class loader name: loader1
+ * class: 792791759
+ * shengsiyuan.MyTest1@47089e5f
+ * shengsiyuan.MyTest16@43556938
+ * ---------------------
+ * findClass invoke: shengsiyuan.MyTest1
+ * class loader name: loader2
+ * class: 1330106945
+ * shengsiyuan.MyTest1@4c3e4790
+ * shengsiyuan.MyTest16@43556938
+ *
+ *
+ *
+ *
  * @Date 2019/4/9 10:36 PM
  * @Version v1.0
  **/
