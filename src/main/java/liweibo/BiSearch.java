@@ -9,6 +9,7 @@ public class BiSearch {
 
         int target = 5;
         int[] nums = new int[]{1, 2, 3, 4};
+
         int low = 0;
         int high = nums.length - 1;
         int middle = 0;
