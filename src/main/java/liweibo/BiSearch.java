@@ -16,9 +16,9 @@ public class BiSearch {
         while (low <= high) {
             middle = (low + high) / 2;
             if(nums[middle] > target) {
-                high--;
+                high = middle - 1;
             }else if (nums[middle] < target) {
-                low++;
+                low = middle + 1;
             }else {
                 System.out.println(middle);
                 break;
