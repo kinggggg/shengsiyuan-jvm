@@ -16,7 +16,7 @@ public class MyTest14 {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         System.out.println(classLoader);
 
-        String resourceName = "jvm/MyParent3.class";
+        String resourceName = "jvm/shengsiyuan/MyParent3.class";
 
         Enumeration<URL> urls = classLoader.getResources(resourceName);
         while(urls.hasMoreElements()) {
