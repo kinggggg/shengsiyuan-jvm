@@ -53,7 +53,7 @@ public class MyTest16 extends ClassLoader {
     private final String fileExtension = ".class" ;
 
     public MyTest16(String classLoaderName) {
-        super();
+        super(); // 将系统类加载器当做该类加载器的父加载器
         this.classLoaderName = classLoaderName;
     }
 
@@ -62,7 +62,7 @@ public class MyTest16 extends ClassLoader {
     }
 
     public MyTest16(ClassLoader parent, String classLoaderName){
-        super(parent);
+        super(parent); // 显示指定类加载器的父加载器
         this.classLoaderName = classLoaderName;
     }
 
@@ -126,7 +126,7 @@ public class MyTest16 extends ClassLoader {
         //当在项目的classpath中存在MyTest1的class文件时，由loader1的父加载器即系统类加载器AppClassLoader进行加载（双亲委派模型的定义：当加载一个类时优先由其父加载器进行加载）
 //        loader1.setPath("/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes");
         //当在项目的classpath中不存在MyTest1的class文件时，由于父加载器AppClassLoader无法加载MyTest1，于是由loader1自己进行加载
-        loader1.setPath("/Users/weibo_li/Desktop/");
+        //loader1.setPath("/Users/weibo_li/Desktop/");
 //        loader1.setPath("C:\\Users\\Administrator\\Desktop\\");
 
         Class<?> clazz = loader1.loadClass("jvm.shengsiyuan.MyTest1");
@@ -138,7 +138,7 @@ public class MyTest16 extends ClassLoader {
         System.out.println("---------------------");
 
         MyTest16 loader2 = new MyTest16("loader2");
-        loader2.setPath("/Users/weibo_li/Desktop/");
+        //loader2.setPath("/Users/weibo_li/Desktop/");
 //        loader2.setPath("C:\\Users\\Administrator\\Desktop\\");
         Class<?> clazz2 = loader2.loadClass("jvm.shengsiyuan.MyTest1");
         System.out.println("class: " + clazz2.hashCode());
