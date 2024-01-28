@@ -14,29 +14,29 @@ import java.io.InputStream;
  * 路径与IDEA的不同而不同，在旧版本，例如2018版本中的路径为/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes）中时
  * 运行下面的程序的输出如下。可以看到加载MyTest1的均是系统类加载器AppClassLoader，因为系统类加载器AppClassLoader可以同类路径下加载MyTest1
  *
- * class: 2018699554
- * shengsiyuan.MyTest1@4e25154f
- * sun.misc.Launcher$AppClassLoader@2a139a55
+ * class: 21685669
+ * object: jvm.shengsiyuan.MyTest1@7f31245a
+ * classLoader: sun.misc.Launcher$AppClassLoader@18b4aac2 // AppClassLoader是系统类加载器
  * ---------------------
- * class: 2018699554
- * shengsiyuan.MyTest1@70dea4e
- * sun.misc.Launcher$AppClassLoader@2a139a55
+ * class: 21685669
+ * object: jvm.shengsiyuan.MyTest1@6d6f6e28
+ * classLoader: sun.misc.Launcher$AppClassLoader@18b4aac2 // AppClassLoader是系统类加载器
  *
  *
  * 2. 当MyTest1.class在类路径下不存在时
  *  运行下面的程序输出如下。可以看到虽然加载的class文件是同一份，但是是由不同的类加载进行加载的
  *
- * findClass invoke: shengsiyuan.MyTest1
+ * findClass invoke: jvm.shengsiyuan.MyTest1
  * class loader name: loader1
- * class: 792791759
- * shengsiyuan.MyTest1@47089e5f
- * shengsiyuan.MyTest16@43556938
+ * class: 1836019240
+ * object: jvm.shengsiyuan.MyTest1@135fbaa4
+ * classLoader: jvm.shengsiyuan.MyTest16@14ae5a5 // 不同的类加载器
  * ---------------------
- * findClass invoke: shengsiyuan.MyTest1
+ * findClass invoke: jvm.shengsiyuan.MyTest1
  * class loader name: loader2
- * class: 1330106945
- * shengsiyuan.MyTest1@4c3e4790
- * shengsiyuan.MyTest16@43556938
+ * class: 621009875
+ * object: jvm.shengsiyuan.MyTest1@4b67cf4d
+ * classLoader: jvm.shengsiyuan.MyTest16@45ee12a7 // 不同的类加载器
  *
  *
  *
@@ -122,29 +122,33 @@ public class MyTest16 extends ClassLoader {
      * 当删除掉classpath下的MyTest1 class文件时，MyTest1加载了两次，但是根据以往的经验：一个类只加载一次，但是通过这个例子看到一个类加载了两次？！这是为什么呢？这涉及到了命名空间的概念
      **/
     public static void main(String[] args) throws Exception {
+        // 打印输出classpath环境变量的值
+        System.out.println("classpath: " + System.getProperty("java.class.path"));
+        System.out.println("---------------------");
+
         MyTest16 loader1 = new MyTest16("loader1");
         //当在项目的classpath中存在MyTest1的class文件时，由loader1的父加载器即系统类加载器AppClassLoader进行加载（双亲委派模型的定义：当加载一个类时优先由其父加载器进行加载）
 //        loader1.setPath("/Users/weibo_li/Documents/code/shengsiyuan-jvm/out/production/classes");
         //当在项目的classpath中不存在MyTest1的class文件时，由于父加载器AppClassLoader无法加载MyTest1，于是由loader1自己进行加载
-        //loader1.setPath("/Users/weibo_li/Desktop/");
+        //loader1.setPath("/Users/liweibo/Desktop/");
 //        loader1.setPath("C:\\Users\\Administrator\\Desktop\\");
 
         Class<?> clazz = loader1.loadClass("jvm.shengsiyuan.MyTest1");
         System.out.println("class: " + clazz.hashCode());
         Object object = clazz.newInstance();
-        System.out.println(object);
-        System.out.println(clazz.getClassLoader());
+        System.out.println("object: " + object);
+        System.out.println("classLoader: " + clazz.getClassLoader());
 
         System.out.println("---------------------");
 
         MyTest16 loader2 = new MyTest16("loader2");
-        //loader2.setPath("/Users/weibo_li/Desktop/");
+        //loader2.setPath("/Users/liweibo/Desktop/");
 //        loader2.setPath("C:\\Users\\Administrator\\Desktop\\");
         Class<?> clazz2 = loader2.loadClass("jvm.shengsiyuan.MyTest1");
         System.out.println("class: " + clazz2.hashCode());
         Object object2 = clazz2.newInstance();
-        System.out.println(object2);
-        System.out.println(clazz.getClassLoader());
+        System.out.println("object: " + object2);
+        System.out.println("classLoader: " + clazz2.getClassLoader());
     }
 
 }
