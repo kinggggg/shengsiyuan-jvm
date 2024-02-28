@@ -19,6 +19,7 @@ public class MyTest20 {
         Class<?> clazz1 = loader1.loadClass("jvm.shengsiyuan.MyPerson");
         Class<?> clazz2 = loader2.loadClass("jvm.shengsiyuan.MyPerson");
 
+        // 输出true。因为MyPerson都是由应用类加载器加载的，因此Class对象是同一个
         System.out.println(clazz1 == clazz2);
 
         Object object1 = clazz1.newInstance();
