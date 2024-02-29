@@ -8,6 +8,8 @@ package jvm.shengsiyuan;
 
 //import sun.misc.Launcher;
 
+import sun.misc.Launcher;
+
 /**
  * 由上可以想到：
  *  在Oracle的Hotspot实现中，系统属性sun.boot.class.path如果修改错了，则运行会出错，提示如下错误信息：
@@ -36,11 +38,15 @@ public class MyTest23 {
          *
          * 启动类加载器还会负责加载供JRE正常运行所需要的基本组件，这包括java.util与java.lang包中的类等等
          **/
+        // 输出null
         System.out.println(ClassLoader.class.getClassLoader());
 
-        //扩展类加载和系统类加载器也是由启动类加载器的。判断的思路是这样的，当一个加载器a加载一个类b的时候，如果在类b当中对类c有引用，那么加载器a同样也会加载类c，此时加载器a就是类c的加载器。因为在JDK源码中我们看到
-        //无论是扩展类加载器ExtClassLoader还是应用类加载器AppClassLoader，都不是public的，而是Launcher类中的一个内部类，而Launcher是public的，于是找到了Launcher类的加载器就找到了扩展类和应用类加载器的加载器
-//        System.out.println(Launcher.class.getClassLoader());
+        //扩展类加载和系统类加载器也是由启动类加载器的。判断的思路是这样的，当一个加载器a加载一个类b的时候，如果在类b当中对类c有引用，那么加载器a同样也会加载类c，
+        // 此时加载器a就是类c的加载器。因为在JDK源码中我们看到
+        //无论是扩展类加载器ExtClassLoader还是应用类加载器AppClassLoader，都不是public的，而是Launcher类中的一个内部类，
+        // 而Launcher是public的，于是找到了Launcher类的加载器就找到了扩展类和应用类加载器的加载器
+        // 输出null
+        System.out.println(Launcher.class.getClassLoader());
 
         System.out.println("------------");
 
