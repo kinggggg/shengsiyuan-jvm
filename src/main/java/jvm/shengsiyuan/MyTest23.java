@@ -25,7 +25,7 @@ public class MyTest23 {
         System.out.println(System.getProperty("java.class.path"));
 
         /**
-         * 内建与JVM中的启动类加载器会加载java.lang.ClassLoader（指用户自定义的类加载器）以及其他的Java平台类（指包括例如java.lang.Object等类）
+         * 内建于JVM中的启动类加载器会加载java.lang.ClassLoader（指用户自定义的类加载器）以及其他的Java平台类（指包括例如java.lang.Object等类）
          * 当JVM启动时，一块特殊的机器码会运行，它会加载包括扩展类加载器和应用类加载器，这块特殊的机器码叫做启动类加载器（Bootstrap类加载器，也就是启动类加载器）
          *
          * 启动类加载器并不是Java类，而其他的加载器则都是Java类。
