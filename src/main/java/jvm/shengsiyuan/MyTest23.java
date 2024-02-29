@@ -66,7 +66,7 @@ public class MyTest23 {
          * sun.misc.Launcher$AppClassLoader@18b4aac2
          * shengsiyuan.MyTest16@4e25154f
          *
-         * 看到应用类加载器已经变为我们自己设定的MyTest16了
+         * 看到应用类加载器已经变为我们自己设定的MyTest16了。但是这个类加载器并没有加载MyTest23，所以MyTest23的类加载器还是应用类加载器
          **/
         System.out.println(System.getProperty("java.system.class.loader"));
         System.out.println(MyTest23.class.getClassLoader());
